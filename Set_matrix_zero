@@ -1,0 +1,54 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+
+int main() {
+    int a[MAX_SIZE][MAX_SIZE];
+    int row, col, i, j;
+    int rowFlag[MAX_SIZE] = {0};
+    int colFlag[MAX_SIZE] = {0};
+
+    printf("Enter the order of matrix (row col): \n");
+    scanf("%d %d", &row, &col);
+
+    if (row > MAX_SIZE || col > MAX_SIZE) {
+        printf("Size exceed the limit !!!!\n");
+        return 0;
+    }
+
+    printf("Enter the elements of matrix:\n");
+    for (i = 0; i < row; i++) {
+        for (j = 0; j < col; j++) {
+            scanf("%d", &a[i][j]);
+            if (a[i][j] == 0) {
+                rowFlag[i] = 1;
+                colFlag[j] = 1;
+            }
+        }
+    }
+
+    for (i = 0; i < row; i++) {
+        if (rowFlag[i]) {
+            for (j = 0; j < col; j++) {
+                a[i][j] = 0;
+            }
+        }
+    }
+
+    for (j = 0; j < col; j++) {
+        if (colFlag[j]) {
+            for (i = 0; i < row; i++) {
+                a[i][j] = 0;
+            }
+        }
+    }
+
+    printf("\nMatrix after setting zeroes:\n");
+    for (i = 0; i < row; i++) {
+        for (j = 0; j < col; j++) {
+            printf("%d\t", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
